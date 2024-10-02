@@ -10,7 +10,6 @@ public class Pagamento {
     private int metodoPagamento; // Método de pagamento (pode ser um ID para um tipo de pagamento)
     private String statusPagamento; // Status do pagamento
 
-    // Getters e Setters
     public int getIdpagamentos() {
         return idpagamentos;
     }
@@ -59,7 +58,6 @@ public class Pagamento {
         this.statusPagamento = statusPagamento;
     }
 
-    // Método para salvar pagamento no banco de dados
     public void save() {
         String sql = "INSERT INTO pagamentos (idlocacoes, valor_total, data_pagamento, metodo_pagamento, status_pagamento) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -82,7 +80,6 @@ public class Pagamento {
         }
     }
 
-    // Método para obter todos os pagamentos
     public static List<Pagamento> getAll() {
         List<Pagamento> pagamentos = new ArrayList<>();
         String sql = "SELECT * FROM pagamentos";
@@ -105,7 +102,6 @@ public class Pagamento {
         return pagamentos;
     }
 
-    // Método para atualizar pagamento
     public void update() {
         String sql = "UPDATE pagamentos SET idlocacoes = ?, valor_total = ?, data_pagamento = ?, metodo_pagamento = ?, status_pagamento = ? WHERE idpagamentos = ?";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -122,7 +118,6 @@ public class Pagamento {
         }
     }
 
-    // Método para deletar pagamento
     public void delete() {
         String sql = "DELETE FROM pagamentos WHERE idpagamentos = ?";
         try (Connection conn = DatabaseConnection.getConnection();
