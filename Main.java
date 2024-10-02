@@ -1,0 +1,22 @@
+import java.sql.Date;
+
+public class Main {
+    public static void main(String[] args) {
+        Locatario locatario = new Locatario();
+
+        // Definindo os valores para o locatário
+        locatario.setNome("João Silva");
+        locatario.setDataNasc("1990-05-20"); // Formato YYYY-MM-DD
+        locatario.setEndereco("Rua das Flores, 123");
+        locatario.setTelefone("123456789");
+        locatario.setCpf("12345678901");
+        locatario.setCnh("1234567890");
+
+        // Salvando o locatário no banco de dados
+        locatario.save();
+
+        System.out.println("Locatário salvo com sucesso!");
+        // Para mostrar o ID, você pode alterar o método save para retornar o ID
+        // ou criar um método adicional para obtê-lo.
+    }
+}
