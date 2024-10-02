@@ -11,7 +11,6 @@ public class Locatario {
     private String cpf; // CPF
     private String cnh; // CNH
 
-    // Getters e Setters
     public int getIdlocatarios() {
         return idlocatarios;
     }
@@ -68,7 +67,6 @@ public class Locatario {
         this.cnh = cnh;
     }
 
-    // Método para salvar locatário no banco de dados
     public void save() {
         String sql = "INSERT INTO locatarios (nome, data_nasc, endereço, telefone, cpf, cnh) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -81,7 +79,6 @@ public class Locatario {
             stmt.setString(6, this.cnh);
             stmt.executeUpdate();
 
-            // Obter o ID gerado
             try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     this.idlocatarios = generatedKeys.getInt(1); // Atualiza o ID do locatário
@@ -92,7 +89,6 @@ public class Locatario {
         }
     }
 
-    // Método para obter todos os locatários
     public static List<Locatario> getAll() {
         List<Locatario> locatarios = new ArrayList<>();
         String sql = "SELECT * FROM locatarios";
@@ -116,7 +112,6 @@ public class Locatario {
         return locatarios;
     }
 
-    // Método para atualizar locatário
     public void update() {
         String sql = "UPDATE locatarios SET nome = ?, data_nasc = ?, endereço = ?, telefone = ?, cpf = ?, cnh = ? WHERE idlocatarios = ?";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -134,7 +129,6 @@ public class Locatario {
         }
     }
 
-    // Método para deletar locatário
     public void delete() {
         String sql = "DELETE FROM locatarios WHERE idlocatarios = ?";
         try (Connection conn = DatabaseConnection.getConnection();
