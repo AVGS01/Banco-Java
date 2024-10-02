@@ -57,4 +57,4 @@ CREATE TABLE `pagamentos` (
   PRIMARY KEY (`idpagamentos`),
   FOREIGN KEY (`idlocacoes`) REFERENCES `locacoes`(`idlocacoes`) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
+.
