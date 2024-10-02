@@ -10,7 +10,6 @@ public class Devolucao {
     private String danos; // Danos do veículo
     private float multaAtraso; // Multa por atraso
 
-    // Getters e Setters
     public int getIddevolucoes() {
         return iddevolucoes;
     }
@@ -59,7 +58,6 @@ public class Devolucao {
         this.multaAtraso = multaAtraso;
     }
 
-    // Método para salvar devolução no banco de dados
     public void save() {
         String sql = "INSERT INTO devolucoes (idlocacoes, data_devolucao, quilometragem, danos, multa_atraso) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -71,10 +69,9 @@ public class Devolucao {
             stmt.setFloat(5, this.multaAtraso);
             stmt.executeUpdate();
 
-            // Obter o ID gerado
             try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
-                    this.iddevolucoes = generatedKeys.getInt(1); // Atualiza o ID da devolução
+                    this.iddevolucoes = generatedKeys.getInt(1);
                 }
             }
         } catch (SQLException e) {
@@ -82,7 +79,6 @@ public class Devolucao {
         }
     }
 
-    // Método para obter todas as devoluções
     public static List<Devolucao> getAll() {
         List<Devolucao> devolucoes = new ArrayList<>();
         String sql = "SELECT * FROM devolucoes";
@@ -105,7 +101,6 @@ public class Devolucao {
         return devolucoes;
     }
 
-    // Método para atualizar devolução
     public void update() {
         String sql = "UPDATE devolucoes SET idlocacoes = ?, data_devolucao = ?, quilometragem = ?, danos = ?, multa_atraso = ? WHERE iddevolucoes = ?";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -122,7 +117,6 @@ public class Devolucao {
         }
     }
 
-    // Método para deletar devolução
     public void delete() {
         String sql = "DELETE FROM devolucoes WHERE iddevolucoes = ?";
         try (Connection conn = DatabaseConnection.getConnection();
