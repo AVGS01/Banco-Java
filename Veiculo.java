@@ -11,7 +11,6 @@ public class Veiculo {
     private String disponibilidade; // Disponibilidade do veículo
     private float valorDiaria; // Valor da diária
 
-    // Getters e Setters
     public int getIdveiculo() {
         return idveiculo;
     }
@@ -68,7 +67,6 @@ public class Veiculo {
         this.valorDiaria = valorDiaria;
     }
 
-    // Método para salvar veículo no banco de dados
     public void save() {
         String sql = "INSERT INTO veiculos (placa, marca, modelo, ano, disponibilidade, valor_diaria) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -92,7 +90,6 @@ public class Veiculo {
         }
     }
 
-    // Método para obter todos os veículos
     public static List<Veiculo> getAll() {
         List<Veiculo> veiculos = new ArrayList<>();
         String sql = "SELECT * FROM veiculos";
@@ -116,7 +113,6 @@ public class Veiculo {
         return veiculos;
     }
 
-    // Método para atualizar veículo
     public void update() {
         String sql = "UPDATE veiculos SET placa = ?, marca = ?, modelo = ?, ano = ?, disponibilidade = ?, valor_diaria = ? WHERE idveiculo = ?";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -134,7 +130,6 @@ public class Veiculo {
         }
     }
 
-    // Método para deletar veículo
     public void delete() {
         String sql = "DELETE FROM veiculos WHERE idveiculo = ?";
         try (Connection conn = DatabaseConnection.getConnection();
