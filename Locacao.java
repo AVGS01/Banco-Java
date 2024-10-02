@@ -10,7 +10,6 @@ public class Locacao {
     private Date dataTermino; // Data de término da locação
     private String statusLocacao; // Status da locação
 
-    // Getters e Setters
     public int getIdlocacoes() {
         return idlocacoes;
     }
@@ -59,7 +58,6 @@ public class Locacao {
         this.statusLocacao = statusLocacao;
     }
 
-    // Método para salvar locação no banco de dados
     public void save() {
         String sql = "INSERT INTO locacoes (idlocatario, idveiculo, data_inicio, data_termino, status_locacao) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -71,7 +69,6 @@ public class Locacao {
             stmt.setString(5, this.statusLocacao);
             stmt.executeUpdate();
 
-            // Obter o ID gerado
             try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     this.idlocacoes = generatedKeys.getInt(1); // Atualiza o ID da locação
@@ -82,7 +79,6 @@ public class Locacao {
         }
     }
 
-    // Método para obter todas as locações
     public static List<Locacao> getAll() {
         List<Locacao> locacoes = new ArrayList<>();
         String sql = "SELECT * FROM locacoes";
@@ -105,7 +101,6 @@ public class Locacao {
         return locacoes;
     }
 
-    // Método para atualizar locação
     public void update() {
         String sql = "UPDATE locacoes SET idlocatario = ?, idveiculo = ?, data_inicio = ?, data_termino = ?, status_locacao = ? WHERE idlocacoes = ?";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -122,7 +117,6 @@ public class Locacao {
         }
     }
 
-    // Método para deletar locação
     public void delete() {
         String sql = "DELETE FROM locacoes WHERE idlocacoes = ?";
         try (Connection conn = DatabaseConnection.getConnection();
